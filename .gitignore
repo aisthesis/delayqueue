@@ -1,0 +1,7 @@
+*.swp
+*.pyc
+
+# auto-generated for package distribution
+MANIFEST
+dist/
+pynance.egg-info/
