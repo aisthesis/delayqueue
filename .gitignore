@@ -1,7 +1,8 @@
 *.swp
 *.pyc
+test.py
 
 # auto-generated for package distribution
 MANIFEST
 dist/
-pynance.egg-info/
+delayqueue.egg-info/
