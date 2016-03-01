@@ -16,35 +16,38 @@ in client code and features marked as likely to be deprecated.
 
 Usage
 --
-    from delayqueue import DelayQueue
-    import time
 
-    queue = DelayQueue()
-    queue.put('eggs', delay=30)
-    print(queue.ask())
-    # 29.999
-    try:
-        item = queue.get()
-    except NotReady:
-        print('not ready')
-        # 'not ready'
-        time.sleep(30)
-    except Empty:
-        print('empty')
-        # no output: queue is not empty, so  this isn't executed
-    else:
-        print(item)
-        # no output: never made it to this block
-    # try again after sleeping
-    try:
-        item = queue.get()
-    except NotReady:
-        print('not ready')
-        # no output: queue is now ready after sleeping
-        time.sleep(30)
-    except Empty:
-        print('empty')
-        # no output: queue is not empty, so  this isn't executed
-    else:
-        print(item)
-        # 'eggs'
+```python
+from delayqueue import DelayQueue
+import time
+
+queue = DelayQueue()
+queue.put('eggs', delay=30)
+print(queue.ask())
+# 29.999
+try:
+    item = queue.get()
+except NotReady:
+    print('not ready')
+    # 'not ready'
+    time.sleep(30)
+except Empty:
+    print('empty')
+    # no output: queue was not empty, so not executed
+else:
+    print(item)
+    # no output: never made it to this block
+# try again after sleeping
+try:
+    item = queue.get()
+except NotReady:
+    print('not ready')
+    # no output: queue was ready after sleeping
+    time.sleep(30)
+except Empty:
+    print('empty')
+    # no output: queue wasn't empty
+else:
+    print(item)
+    # 'eggs'
+```
